@@ -9,6 +9,9 @@ title: Home
 
 ## Latest Posts
 
+
+总共有 {{ site.posts | size }} 篇文章。
+
 <ul>
   {% for post in site.posts %}
     <li>
