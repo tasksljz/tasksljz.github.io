@@ -2,9 +2,9 @@
     "name": "my-static-site",
     "version": "1.0.0",
     "description": "Custom static site generator",
-    "main": "generate.js",
+    "main": "generate.mjs",
     "scripts": {
-        "build": "node generate.js"
+        "build": "node generate.mjs"
     },
     "dependencies": {
         "marked": "^4.0.0"
