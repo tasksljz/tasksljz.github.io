@@ -21,3 +21,9 @@ title: Home
     <li>No posts found.</li>
   {% endfor %}
 </ul>
+
+
+{ % for post in site.posts % }
+  <a href="http://alfred-sun.github.io/blog/2015/01/10/jekyll-liquid-syntax-documentation/{ { post.url } }">{ { post.title } }</a>
+  { { post.excerpt | remove: 'test' } }
+{ % endfor % }
