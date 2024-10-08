@@ -1,9 +1,9 @@
-name: Build and Deploy Static Site
+name: Deploy to GitHub Pages
 
 on:
   push:
     branches:
-      - main
+      - main  # 指定要触发工作流的分支
 
 jobs:
   build:
@@ -11,22 +11,24 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: '22'  # 使用 Node.js 版本 22
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build static site
-        run: npm run build
+      - name: Build and generate files
+        run: |
+          node dev.mjs
+          echo "Files in build directory:"
+          ls -la build  # 列出 build 目录中的文件
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
-          publish_branch: gh-pages
