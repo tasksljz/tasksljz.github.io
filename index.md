@@ -14,5 +14,7 @@ title: Home
     <li>
       <a href="{{ post.url }}">{{ post.title }}</a> - {{ post.date | date: "%Y-%m-%d" }}
     </li>
+  {% else %}
+    <li>No posts found.</li>
   {% endfor %}
 </ul>
