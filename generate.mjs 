@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import marked from 'marked';  // 用于将 markdown 转换为 HTML
+import marked from 'marked'; // 用于将 markdown 转换为 HTML
 
 // 定义路径
 const sourceDir = './source';

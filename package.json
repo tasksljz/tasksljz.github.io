@@ -1,0 +1,12 @@
+{
+    "name": "my-static-site",
+    "version": "1.0.0",
+    "description": "Custom static site generator",
+    "main": "generate.js",
+    "scripts": {
+        "build": "node generate.js"
+    },
+    "dependencies": {
+        "marked": "^4.0.0"
+    }
+}
