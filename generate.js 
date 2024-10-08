@@ -1,0 +1,42 @@
+import fs from 'fs';
+import path from 'path';
+import marked from 'marked';  // 用于将 markdown 转换为 HTML
+
+// 定义路径
+const sourceDir = './source';
+const buildDir = './build';
+
+// 清空并创建 build 文件夹
+if (fs.existsSync(buildDir)) {
+    fs.rmSync(buildDir, { recursive: true });
+}
+fs.mkdirSync(buildDir);
+
+// 复制静态资源到 build 文件夹
+const assetsDir = path.join(sourceDir, 'assets');
+fs.cpSync(assetsDir, path.join(buildDir, 'assets'), { recursive: true });
+
+// 读取模板文件
+const templatePath = path.join(sourceDir, 'templates', 'index.html');
+const template = fs.readFileSync(templatePath, 'utf8');
+
+// 处理内容
+const contentPath = path.join(sourceDir, 'content');
+const files = fs.readdirSync(contentPath);
+
+files.forEach(file => {
+    const filePath = path.join(contentPath, file);
+    const content = fs.readFileSync(filePath, 'utf8');
+    const htmlContent = marked(content); // 将 markdown 转换为 HTML
+
+    // 替换模板中的占位符
+    const finalHtml = template
+        .replace('{{title}}', '我的静态页面')
+        .replace('{{content}}', htmlContent);
+
+    // 将生成的 HTML 写入 build 文件夹
+    const outputFilePath = path.join(buildDir, file.replace('.md', '.html'));
+    fs.writeFileSync(outputFilePath, finalHtml, 'utf8');
+});
+
+console.log('静态网站生成完成');
