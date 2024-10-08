@@ -22,7 +22,7 @@ jobs:
         run: npm install marked
 
       - name: Build static site
-        run: node generate.js
+        run: node generate.mjs
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
