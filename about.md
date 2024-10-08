@@ -9,4 +9,4 @@ title: About
 
 
 
-- [About]({{ site.baseurl }}/nidaye)
+- [NiDaye]({{ site.baseurl }}/nidaye)
